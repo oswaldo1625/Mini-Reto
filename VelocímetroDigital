@@ -1,0 +1,39 @@
+//: Playground - noun: a place where people can play
+
+import UIKit
+
+enum Velocidades : Int{
+    case Apagado = 0, VelocidadBaja = 20, VelocidadMedia = 50, VelocidadAlta = 120
+    init (velocidadInicial : Velocidades){
+        self = velocidadInicial
+    }
+}
+
+class Auto{
+    var velocidad = Velocidades(velocidadInicial: Velocidades.Apagado)
+    var x = 0
+    func cambioDeVelocidad( ) -> (actual: Int, velocidadEnCadena: String){
+        if x == 0{
+            velocidad = .Apagado
+        }
+        else if velocidad == .Apagado{
+            velocidad = .VelocidadBaja
+        }
+        else if velocidad == .VelocidadBaja{
+            velocidad = .VelocidadMedia
+        }
+        else if velocidad == .VelocidadMedia{
+            velocidad = .VelocidadAlta
+        }
+        else if velocidad == .VelocidadAlta{
+            velocidad = .Apagado
+        }
+        x+=1
+    return(velocidad.rawValue, String(velocidad))
+    }
+}
+
+var auto = Auto()
+for vel in 1...20{
+    print(auto.cambioDeVelocidad())
+}
